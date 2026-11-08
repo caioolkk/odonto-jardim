@@ -1,0 +1,7 @@
+import { createClient } from '@supabase/supabase-js'
+const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+export const configured = Boolean(url?.startsWith('https://') && key && !url.includes('SEU-PROJETO') && !key.includes('SUA_CHAVE'))
+export const supabase = configured ? createClient(url!, key!, {
+  auth: { autoRefreshToken:true, persistSession:true, detectSessionInUrl:false },
+}) : null
