@@ -97,3 +97,11 @@ O pacote inclui todos os **arquivos de implementação**, mas a migração deve 
 O projeto ODONTO JARDIM foi criado em sa-east-1 e as tabelas foram aplicadas diretamente. O arquivo `.env` já contém a URL e a chave **publicável** do novo projeto. Não inclui nenhum segredo administrativo.
 
 Antes de usar: crie o primeiro funcionário em Supabase Authentication > Users e depois adicione o UUID à tabela `staff_profiles` com role `admin` (conforme `supabase/primeiro-admin.sql`). Desative cadastro público no Auth; o aplicativo não registra usuários por conta própria. Sem funcionário autorizado o login não libera os dados. Faça testes de ponta a ponta antes de registrar dados reais de saúde.
+
+## Atualização de 08/11/2026: exclusão e edição de situação de pagamento
+
+Os novos controles são exibidos na ficha do paciente para funcionários com perfil `admin`. **Excluir pedido** e **Excluir cliente** são arquivamentos lógicos, com confirmação explícita; não apagam pagamentos ou dados históricos. A agenda e a lista de clientes ocultam os registros arquivados, enquanto o financeiro conserva o histórico.
+
+**Editar situação do pagamento** permite mudar entre Pendente, Parcial e Pago em pedidos ainda não finalizados. O sistema registra ajustes positivos ou negativos na tabela append-only `payment_adjustments`, sempre com motivo, sem modificar nem apagar pagamentos originais. A posição financeira líquida é recalculada após cada ajuste.
+
+O Supabase original foi atualizado diretamente em 08/11/2026 com a migração `supabase/migrations/202611080001_archive_and_payment_corrections.sql`. Não reexecute em produção sem revisão. Testes transacionais das RPCs passaram e foram revertidos; não houve exclusão de registros existentes. É necessário testar em navegador com dados fictícios após publicação.

@@ -1,0 +1,31 @@
+ODONTO JARDIM — VERSÃO ORIGINAL REACT/VITE
+========================================
+
+Este pacote contém o frontend React ORIGINAL, incluindo a pasta src/.
+O arquivo src/style.css e os componentes visuais não foram alterados.
+
+PUBLICAR NO VERCEL
+1. Extraia o ZIP no computador.
+2. Crie um repositório no GitHub e envie TODOS os arquivos extraídos,
+   incluindo src/, public/, package.json, package-lock.json, vite.config.ts,
+   .env.production e vercel.json. Não envie o ZIP fechado.
+3. Vercel > Add New > Project > Import Git Repository.
+4. Configure: Framework Preset Vite; Root Directory .;
+   Build Command npm run build; Output Directory dist.
+5. Deploy.
+
+CONECTADO AO SUPABASE
+- O arquivo .env.production contém SOMENTE a URL e a chave publicável
+  do projeto Supabase ODONTO JARDIM. São dados públicos de frontend,
+  não a chave administrativa / service_role.
+- Não execute novamente a migração SQL. Banco e conta da Clara já foram
+  criados e autorizados anteriormente.
+- O login exige uma conta ativa em auth.users + staff_profiles.
+
+IMPORTANTES
+- Se seu repositório GitHub já tinha configurações de build alteradas,
+  verifique que prevalecem as configurações acima.
+- Teste com dados FICTÍCIOS antes de registrar pacientes reais. Não há
+  validação completa nesta entrega de ponta a ponta com sessão da Clara.
+- Proteja a senha, revise requisitos LGPD, backups e segurança para
+  operar com dados sensíveis de pacientes.

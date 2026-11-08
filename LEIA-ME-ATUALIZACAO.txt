@@ -1,0 +1,27 @@
+ODONTO JARDIM — atualizacao: 08/11/2026
+
+O QUE FOI ADICIONADO
+- Excluir pedido: ficha do paciente -> historico de tratamentos -> Excluir pedido.
+- Excluir cliente: ficha do paciente -> rodape -> Excluir cliente.
+- Editar situacao do pagamento: ficha -> pedido em andamento -> Editar situacao do pagamento.
+- Situacoes: Pendente (R$ 0), Parcial (informe o total recebido), Pago (valor integral).
+- Para reduzir um valor pago incorretamente, use o ajuste com motivo. Todos os recebimentos antigos permanecem preservados.
+- Exclusoes possuem confirmacao: escrever EXCLUIR antes de concluir.
+- Apenas funcionarios com role admin (como Clara) podem usar esses controles.
+- Os registros 'excluidos' sao ARQUIVADOS, nao eliminados fisicamente. Os dados financeiros continuam no historico e nao somem do Supabase.
+- Pedido finalizado nao permite editar pagamentos, preservando o bloqueio ja existente.
+
+SUPABASE
+As tabelas archived_records e payment_adjustments, funcoes RPC e guardas foram aplicadas ao Supabase ODONTO JARDIM.
+As migracoes estao em supabase/migrations/ para documentacao/instalacao em outro projeto; NAO execute novamente no banco ja atualizado.
+
+PUBLICACAO NO VERCEL
+1. EXTRAIA este ZIP. Ele contem arquivos na raiz e pastas src/ e public/.
+2. Substitua os arquivos no repositorio GitHub, PRESERVANDO as pastas src e public.
+   O arquivo src/main.tsx deve estar exatamente em /src/main.tsx e NAO na raiz.
+3. Vercel: Framework Vite; Build Command npm run build; Output dist.
+4. Confirme o deploy e teste com dados ficticios antes de usar com pacientes reais.
+5. As credenciais publicas do Supabase estao em .env.production. Nunca suba service_role.
+
+OBS: Este ambiente nao conseguiu instalar dependencias npm (sem acesso ao registro). O TypeScript foi verificado sintaticamente,
+mas o build completo e o fluxo no navegador com a conta real devem ser validados no Vercel.
